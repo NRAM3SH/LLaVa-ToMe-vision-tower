@@ -48,7 +48,7 @@ def add_tome_to_clip_vision_tower(self, vision_tower, num_tokens, r_token, devic
     return vision_tower
 ```
 
-The token merging process if meant to fit within the existing vision tower forward process, seamlessly intercepting and modifying the hidden states between the self-attention and MLP layers of each transformer block. More specifically, we perform bipartite soft matching on the existing tokens and merge them accoridngly before sending it to the MLP.
+The token merging process if meant to fit within the existing vision tower forward process, seamlessly intercepting and modifying the hidden states between the self-attention and MLP layers of each transformer block. More specifically, we perform bipartite soft matching on the existing tokens and merge them accordingly before sending it to the MLP. Due to the nature of token merging being an algorithm, there are no extra parameters associated with the ToMe layer. The only data we are saving is the *r* value scheduler, which dynamically adjusts the token reduction rate across different layers of the vision transformer. This scheduler allows for a progressive and adaptive token merging strategy, where the reduction rate can be varied systematically throughout the network's depth, enabling more nuanced and context-aware token compression without introducing additional learnable parameters.
 
 ## Current benchmarking progress
 
